@@ -1,5 +1,5 @@
-
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -7,10 +7,10 @@
 
   <title>Graphicatorsign Printing Services</title>
 
-  <meta
-    name="description"
-    content="Graphicatorsign Printing Services by Jeric Bulaga. Quality printing, signage, custom designs, and promotional materials."
-  />
+<meta
+ name="description"
+ content="Graphicatorsign Printing Services by Jeric Bulaga. Quality printing, signage, custom designs, and promotional materials."
+/>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,6 +25,7 @@
       --black: #111111;
       --dark: #181818;
       --yellow: #ffd43b;
+      --yellow-light: #ffe06d;
       --white: #ffffff;
       --gray: #f5f5f3;
       --muted: #737373;
@@ -46,6 +47,7 @@
       color: var(--black);
       background: var(--white);
       line-height: 1.6;
+      overflow-x: hidden;
     }
 
     body.lightbox-open {
@@ -71,7 +73,24 @@
       margin: auto;
     }
 
-    /* ================= NAV ================= */
+    /* =========================
+       SCROLL PROGRESS
+    ========================= */
+
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 3px;
+      background: var(--yellow);
+      z-index: 100000;
+      transition: width .08s linear;
+    }
+
+    /* =========================
+       NAVIGATION
+    ========================= */
 
     nav {
       height: 80px;
@@ -84,6 +103,7 @@
       right: 0;
       z-index: 10;
       color: white;
+      animation: navDrop .8s ease both;
     }
 
     .nav-inner {
@@ -100,6 +120,11 @@
       font-size: 20px;
       font-weight: 900;
       letter-spacing: -0.8px;
+      transition: transform .25s ease;
+    }
+
+    .logo:hover {
+      transform: translateY(-2px);
     }
 
     .logo img {
@@ -108,6 +133,11 @@
       object-fit: contain;
       border-radius: 5px;
       background: white;
+      transition: transform .3s ease;
+    }
+
+    .logo:hover img {
+      transform: rotate(-4deg) scale(1.05);
     }
 
     .nav-links {
@@ -119,13 +149,17 @@
     }
 
     .nav-links a {
-      opacity: 0.85;
-      transition: 0.2s;
+      opacity: .85;
+      transition:
+        opacity .2s ease,
+        color .2s ease,
+        transform .2s ease;
     }
 
     .nav-links a:hover {
       opacity: 1;
       color: var(--yellow);
+      transform: translateY(-2px);
     }
 
     .nav-btn {
@@ -134,14 +168,19 @@
       padding: 12px 20px;
       border-radius: 6px;
       opacity: 1 !important;
+      box-shadow: 0 8px 25px rgba(255, 212, 59, .15);
     }
 
     .nav-btn:hover {
       color: var(--black) !important;
-      background: #ffe06d;
+      background: var(--yellow-light);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(255, 212, 59, .25);
     }
 
-    /* ================= HERO ================= */
+    /* =========================
+       HERO
+    ========================= */
 
     .hero {
       min-height: 720px;
@@ -153,7 +192,7 @@
           rgba(0,0,0,.78) 48%,
           rgba(0,0,0,.35) 100%
         ),
-        url("kuya jeric/cover.png")
+        url("kuya%20jeric/cover.png")
         center / cover;
 
       color: white;
@@ -161,6 +200,18 @@
       align-items: center;
       position: relative;
       overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 50%;
+      right: -260px;
+      top: -200px;
+      animation: slowRotate 25s linear infinite;
     }
 
     .hero::after {
@@ -172,6 +223,7 @@
       border-radius: 50%;
       right: -180px;
       bottom: -200px;
+      animation: slowRotateReverse 30s linear infinite;
     }
 
     .hero-content {
@@ -191,6 +243,7 @@
       letter-spacing: 2px;
       text-transform: uppercase;
       margin-bottom: 20px;
+      animation: fadeUp .8s .2s ease both;
     }
 
     .eyebrow::before {
@@ -198,14 +251,17 @@
       width: 35px;
       height: 3px;
       background: var(--yellow);
+      animation: lineGrow .8s .5s ease both;
+      transform-origin: left;
     }
 
     h1 {
       font-size: clamp(48px, 7vw, 88px);
-      line-height: 0.98;
+      line-height: .98;
       letter-spacing: -4px;
       font-weight: 900;
       margin-bottom: 28px;
+      animation: fadeUp .9s .35s ease both;
     }
 
     h1 span {
@@ -217,12 +273,14 @@
       color: #d5d5d5;
       font-size: 16px;
       margin-bottom: 35px;
+      animation: fadeUp .9s .5s ease both;
     }
 
     .buttons {
       display: flex;
       gap: 12px;
       flex-wrap: wrap;
+      animation: fadeUp .9s .65s ease both;
     }
 
     .btn {
@@ -233,17 +291,22 @@
       border-radius: 6px;
       font-size: 13px;
       font-weight: 800;
-      transition: 0.25s;
+      transition:
+        transform .25s ease,
+        background .25s ease,
+        box-shadow .25s ease;
     }
 
     .btn-primary {
       background: var(--yellow);
       color: var(--black);
+      box-shadow: 0 10px 30px rgba(255, 212, 59, .12);
     }
 
     .btn-primary:hover {
-      transform: translateY(-2px);
-      background: #ffe06d;
+      transform: translateY(-4px);
+      background: var(--yellow-light);
+      box-shadow: 0 15px 35px rgba(255, 212, 59, .22);
     }
 
     .btn-outline {
@@ -254,9 +317,55 @@
     .btn-outline:hover {
       background: white;
       color: black;
+      transform: translateY(-4px);
     }
 
-    /* ================= ABOUT ================= */
+    /* =========================
+       GENERAL REVEAL
+    ========================= */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(35px);
+      transition:
+        opacity .8s ease,
+        transform .8s cubic-bezier(.2,.7,.2,1);
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-45px);
+      transition:
+        opacity .8s ease,
+        transform .8s cubic-bezier(.2,.7,.2,1);
+    }
+
+    .reveal-left.active {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(45px);
+      transition:
+        opacity .8s ease,
+        transform .8s cubic-bezier(.2,.7,.2,1);
+    }
+
+    .reveal-right.active {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* =========================
+       ABOUT
+    ========================= */
 
     .intro {
       padding: 95px 0;
@@ -302,6 +411,16 @@
     .stat {
       background: white;
       padding: 35px 30px;
+      transition:
+        transform .3s ease,
+        box-shadow .3s ease;
+    }
+
+    .stat:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0,0,0,.07);
+      position: relative;
+      z-index: 2;
     }
 
     .stat strong {
@@ -317,7 +436,9 @@
       font-weight: 600;
     }
 
-    /* ================= PORTFOLIO ================= */
+    /* =========================
+       PORTFOLIO
+    ========================= */
 
     .gallery {
       padding: 100px 0;
@@ -359,17 +480,37 @@
       overflow: hidden;
       background: #222;
       cursor: pointer;
+      border-radius: 2px;
+
+      opacity: 0;
+      transform: translateY(30px) scale(.97);
+      transition:
+        opacity .7s ease,
+        transform .7s cubic-bezier(.2,.7,.2,1),
+        box-shadow .3s ease;
+    }
+
+    .gallery-item.active {
+      opacity: 1;
+      transform: translateY(0) scale(1);
     }
 
     .gallery-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform .45s ease;
+      transition:
+        transform .6s cubic-bezier(.2,.7,.2,1),
+        filter .4s ease;
+    }
+
+    .gallery-item:hover {
+      box-shadow: 0 20px 45px rgba(0,0,0,.3);
     }
 
     .gallery-item:hover img {
-      transform: scale(1.07);
+      transform: scale(1.09);
+      filter: brightness(.72);
     }
 
     .gallery-item::after {
@@ -377,7 +518,7 @@
       position: absolute;
       left: 50%;
       top: 50%;
-      transform: translate(-50%, -50%);
+      transform: translate(-50%, -40%);
       background: var(--yellow);
       color: var(--black);
       padding: 10px 15px;
@@ -386,20 +527,25 @@
       font-weight: 900;
       letter-spacing: 1px;
       opacity: 0;
-      transition: .25s;
+      transition:
+        opacity .25s ease,
+        transform .25s ease;
       pointer-events: none;
     }
 
     .gallery-item:hover::after {
       opacity: 1;
+      transform: translate(-50%, -50%);
     }
 
-    /* ================= LIGHTBOX ================= */
+    /* =========================
+       LIGHTBOX
+    ========================= */
 
     .lightbox {
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.95);
+      background: rgba(0,0,0,.96);
       z-index: 99999;
       display: none;
       align-items: center;
@@ -409,6 +555,7 @@
 
     .lightbox.active {
       display: flex;
+      animation: lightboxBackground .25s ease both;
     }
 
     .lightbox-image {
@@ -419,14 +566,24 @@
       object-fit: contain;
       border-radius: 4px;
       user-select: none;
-      animation: lightboxZoom .25s ease;
       box-shadow: 0 15px 60px rgba(0,0,0,.5);
+      animation: lightboxZoom .3s ease both;
+    }
+
+    @keyframes lightboxBackground {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
     }
 
     @keyframes lightboxZoom {
       from {
         opacity: 0;
-        transform: scale(.92);
+        transform: scale(.88);
       }
 
       to {
@@ -449,13 +606,16 @@
       border-radius: 50%;
       cursor: pointer;
       z-index: 3;
-      transition: .2s;
+      transition:
+        background .2s ease,
+        color .2s ease,
+        transform .25s ease;
     }
 
     .lightbox-close:hover {
       background: var(--yellow);
       color: var(--black);
-      transform: rotate(90deg);
+      transform: rotate(90deg) scale(1.05);
     }
 
     .lightbox-arrow {
@@ -474,7 +634,10 @@
       z-index: 3;
       display: grid;
       place-items: center;
-      transition: .2s;
+      transition:
+        background .2s ease,
+        color .2s ease,
+        transform .2s ease;
     }
 
     .lightbox-arrow:hover {
@@ -488,6 +651,14 @@
 
     .lightbox-next {
       right: 25px;
+    }
+
+    .lightbox-prev:hover {
+      transform: translateY(-50%) translateX(-3px);
+    }
+
+    .lightbox-next:hover {
+      transform: translateY(-50%) translateX(3px);
     }
 
     .lightbox-counter {
@@ -504,7 +675,9 @@
       border-radius: 20px;
     }
 
-    /* ================= SERVICES ================= */
+    /* =========================
+       SERVICES
+    ========================= */
 
     .services {
       background: var(--gray);
@@ -540,12 +713,16 @@
       padding: 35px 28px;
       min-height: 280px;
       border: 1px solid #ebebeb;
-      transition: 0.25s;
+      transition:
+        transform .35s cubic-bezier(.2,.7,.2,1),
+        border-color .25s ease,
+        box-shadow .35s ease;
     }
 
     .service:hover {
-      transform: translateY(-7px);
+      transform: translateY(-9px);
       border-color: var(--black);
+      box-shadow: 0 20px 40px rgba(0,0,0,.08);
     }
 
     .service-number {
@@ -558,6 +735,11 @@
     .service-icon {
       font-size: 28px;
       margin-bottom: 15px;
+      transition: transform .3s ease;
+    }
+
+    .service:hover .service-icon {
+      transform: translateY(-4px) scale(1.08);
     }
 
     .service h3 {
@@ -571,7 +753,9 @@
       font-size: 12px;
     }
 
-    /* ================= WHY ================= */
+    /* =========================
+       WHY
+    ========================= */
 
     .why {
       padding: 100px 0;
@@ -579,18 +763,26 @@
 
     .why-grid {
       display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
+      grid-template-columns: .9fr 1.1fr;
       gap: 90px;
       align-items: center;
     }
 
     .why-image {
       min-height: 500px;
+      position: relative;
+      overflow: hidden;
 
       background:
         linear-gradient(rgba(0,0,0,.1), rgba(0,0,0,.3)),
-        url("kuya jeric/photo1.jpg")
+        url("kuya%20jeric/photo1.jpg")
         center / cover;
+
+      transition: transform .5s ease;
+    }
+
+    .why-image:hover {
+      transform: translateY(-5px);
     }
 
     .benefits {
@@ -605,6 +797,11 @@
       gap: 20px;
       padding: 23px 0;
       border-bottom: 1px solid var(--border);
+      transition: padding-left .25s ease;
+    }
+
+    .benefit:hover {
+      padding-left: 8px;
     }
 
     .check {
@@ -617,6 +814,11 @@
       place-items: center;
       font-size: 13px;
       font-weight: 900;
+      transition: transform .25s ease;
+    }
+
+    .benefit:hover .check {
+      transform: scale(1.1) rotate(5deg);
     }
 
     .benefit h3 {
@@ -629,13 +831,44 @@
       font-size: 12px;
     }
 
-    /* ================= CTA ================= */
+    /* =========================
+       CTA
+    ========================= */
 
     .cta {
       background: var(--black);
       color: white;
       padding: 90px 0;
       text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta::before {
+      content: "";
+      position: absolute;
+      width: 350px;
+      height: 350px;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 50%;
+      left: -170px;
+      top: -160px;
+    }
+
+    .cta::after {
+      content: "";
+      position: absolute;
+      width: 250px;
+      height: 250px;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 50%;
+      right: -120px;
+      bottom: -120px;
+    }
+
+    .cta .container {
+      position: relative;
+      z-index: 2;
     }
 
     .cta h2 {
@@ -650,7 +883,9 @@
       font-size: 14px;
     }
 
-    /* ================= CONTACT ================= */
+    /* =========================
+       CONTACT
+    ========================= */
 
     .contact {
       padding: 100px 0;
@@ -687,17 +922,26 @@
       background: var(--gray);
       border: 1px solid var(--border);
       border-radius: 8px;
-      transition: .25s;
+      transition:
+        transform .3s ease,
+        border-color .25s ease,
+        box-shadow .3s ease;
     }
 
     .contact-item:hover {
-      transform: translateY(-4px);
+      transform: translateY(-6px);
       border-color: var(--black);
+      box-shadow: 0 15px 30px rgba(0,0,0,.07);
     }
 
     .contact-icon {
       font-size: 22px;
       margin-bottom: 10px;
+      transition: transform .25s ease;
+    }
+
+    .contact-item:hover .contact-icon {
+      transform: scale(1.12);
     }
 
     .contact-item small {
@@ -714,7 +958,9 @@
       font-size: 14px;
     }
 
-    /* ================= FOOTER ================= */
+    /* =========================
+       FOOTER
+    ========================= */
 
     footer {
       background: #0b0b0b;
@@ -741,9 +987,74 @@
     .designer a {
       color: var(--yellow);
       font-weight: 700;
+      transition: opacity .2s ease;
     }
 
-    /* ================= MOBILE ================= */
+    .designer a:hover {
+      opacity: .7;
+    }
+
+    /* =========================
+       ANIMATIONS
+    ========================= */
+
+    @keyframes navDrop {
+      from {
+        opacity: 0;
+        transform: translateY(-25px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes lineGrow {
+      from {
+        transform: scaleX(0);
+      }
+
+      to {
+        transform: scaleX(1);
+      }
+    }
+
+    @keyframes slowRotate {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes slowRotateReverse {
+      from {
+        transform: rotate(360deg);
+      }
+
+      to {
+        transform: rotate(0deg);
+      }
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
 
     @media (max-width: 850px) {
 
@@ -924,148 +1235,185 @@
         font-size: 11px;
       }
     }
+
+    /* =========================
+       REDUCED MOTION
+    ========================= */
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+      }
+
+      .reveal,
+      .reveal-left,
+      .reveal-right,
+      .gallery-item {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
   </style>
+
 </head>
 
 <body>
+
+  <!-- SCROLL PROGRESS -->
+
+  <div class="scroll-progress" id="scrollProgress"></div>
 
   <!-- ================= NAVIGATION ================= -->
 
   <nav>
     <div class="container nav-inner">
 
-      <a href="#" class="logo">
-        <img
-          src="kuya jeric/logo.jpg"
-          alt="Graphicatorsign Logo"
-        >
-        Graphicatorsign<span style="color:#ffd43b;">Printing Services</span>
-      </a>
+```
+  <a href="#" class="logo">
+    <img
+      src="kuya%20jeric/logo.jpg"
+      alt="Graphicatorsign Logo"
+    >
 
-      <div class="nav-links">
+    Graphicatorsign
+    <span style="color:#ffd43b;">
+      Printing Services
+    </span>
+  </a>
 
-        <a href="#services">Services</a>
-        <a href="#portfolio">Portfolio</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
+  <div class="nav-links">
 
-        <a href="#contact" class="nav-btn">
-          Contact Us
-        </a>
+    <a href="#services">Services</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
 
-      </div>
+    <a href="#contact" class="nav-btn">
+      Contact Us
+    </a>
 
-    </div>
+  </div>
+
+</div>
+```
+
   </nav>
-
 
   <!-- ================= HERO ================= -->
 
   <header class="hero">
 
-    <div class="container">
+```
+<div class="container">
 
-      <div class="hero-content">
+  <div class="hero-content">
 
-        <div class="eyebrow">
-          Printing & Creative Services
-        </div>
+    <div class="eyebrow">
+      Printing & Creative Services
+    </div>
 
-        <h1>
-          MAKE IT.<br>
-          <span>PRINT IT.</span><br>
-          STAND OUT.
-        </h1>
+    <h1>
+      MAKE IT.<br>
+      <span>PRINT IT.</span><br>
+      STAND OUT.
+    </h1>
 
-        <p class="hero-text">
-          Quality printing and creative solutions for businesses,
-          events, organizations, and personal projects.
-          Bring your ideas to life with Graphicatorsign.
-        </p>
+    <p class="hero-text">
+      Quality printing and creative solutions for businesses,
+      events, organizations, and personal projects.
+      Bring your ideas to life with Graphicatorsign.
+    </p>
 
-        <div class="buttons">
+    <div class="buttons">
 
-          <a
-            href="#contact"
-            class="btn btn-primary"
-          >
-            CONTACT US →
-          </a>
+      <a
+        href="#contact"
+        class="btn btn-primary"
+      >
+        CONTACT US →
+      </a>
 
-          <a
-            href="tel:09354551563"
-            class="btn btn-outline"
-          >
-            CALL 0935 455 1563
-          </a>
-
-        </div>
-
-      </div>
+      <a
+        href="tel:09354551563"
+        class="btn btn-outline"
+      >
+        CALL 0935 455 1563
+      </a>
 
     </div>
 
-  </header>
+  </div>
 
+</div>
+```
+
+  </header>
 
   <!-- ================= ABOUT ================= -->
 
   <section class="intro" id="about">
 
-    <div class="container">
+```
+<div class="container">
 
-      <div class="intro-grid">
+  <div class="intro-grid">
 
-        <div>
+    <div class="reveal-left">
 
-          <div class="section-label">
-            Who We Are
-          </div>
+      <div class="section-label">
+        Who We Are
+      </div>
 
-          <h2>
-            YOUR IDEA.<br>
-            OUR PRINT.
-          </h2>
+      <h2>
+        YOUR IDEA.<br>
+        OUR PRINT.
+      </h2>
 
-          <p class="intro-text">
-            Graphicatorsign Printing Services provides dependable
-            printing and creative solutions designed to help your
-            business, event, or project make a lasting impression.
-          </p>
+      <p class="intro-text">
+        Graphicatorsign Printing Services provides dependable
+        printing and creative solutions designed to help your
+        business, event, or project make a lasting impression.
+      </p>
 
-        </div>
+    </div>
 
 
-        <div class="stat-box">
+    <div class="stat-box reveal-right">
 
-          <div class="stat">
-            <strong>01</strong>
-            <span>Quality-focused printing</span>
-          </div>
+      <div class="stat">
+        <strong>01</strong>
+        <span>Quality-focused printing</span>
+      </div>
 
-          <div class="stat">
-            <strong>02</strong>
-            <span>Custom printing solutions</span>
-          </div>
+      <div class="stat">
+        <strong>02</strong>
+        <span>Custom printing solutions</span>
+      </div>
 
-          <div class="stat">
-            <strong>03</strong>
-            <span>Business & personal orders</span>
-          </div>
+      <div class="stat">
+        <strong>03</strong>
+        <span>Business & personal orders</span>
+      </div>
 
-          <div class="stat">
-            <strong>04</strong>
-            <span>Friendly service</span>
-          </div>
-
-        </div>
-
+      <div class="stat">
+        <strong>04</strong>
+        <span>Friendly service</span>
       </div>
 
     </div>
 
-  </section>
+  </div>
 
+</div>
+```
+
+  </section>
 
   <!-- ================= PORTFOLIO ================= -->
 
@@ -1074,166 +1422,103 @@
     id="portfolio"
   >
 
-    <div class="container">
+```
+<div class="container">
 
-      <div class="gallery-head">
+  <div class="gallery-head reveal">
 
-        <div>
+    <div>
 
-          <div class="section-label">
-            Our Work
-          </div>
-
-          <h2>
-            RECENT PROJECTS
-          </h2>
-
-        </div>
-
-        <p class="gallery-description">
-          Take a look at some of the printing and creative
-          projects completed by Graphicatorsign.
-        </p>
-
+      <div class="section-label">
+        Our Work
       </div>
 
-
-      <div class="gallery-grid">
-
-        <div class="gallery-item" data-index="0">
-          <img
-            src="kuya jeric/photo1.jpg"
-            alt="Graphicatorsign Project 1"
-            loading="lazy"
-          >
-        </div>
-
-        <div class="gallery-item" data-index="1">
-          <img
-            src="kuya jeric/photo2.jpg"
-            alt="Graphicatorsign Project 2"
-            loading="lazy"
-          >
-        </div>
-
-        <div class="gallery-item" data-index="2">
-          <img
-            src="kuya jeric/photo3.jpg"
-            alt="Graphicatorsign Project 3"
-            loading="lazy"
-          >
-        </div>
-
-        <div class="gallery-item" data-index="3">
-          <img
-            src="kuya jeric/photo4.jpg"
-            alt="Graphicatorsign Project 4"
-            loading="lazy"
-          >
-        </div>
-
-        <div class="gallery-item" data-index="4">
-          <img
-            src="kuya jeric/photo5.jpg"
-            alt="Graphicatorsign Project 5"
-            loading="lazy"
-          >
-        </div>
-
-        <div class="gallery-item" data-index="5">
-          <img
-            src="kuya jeric/photo6.jpg"
-            alt="Graphicatorsign Project 6"
-            loading="lazy"
-          >
-        </div>
-
-        <div class="gallery-item" data-index="6">
-          <img
-            src="kuya jeric/photo7.jpg"
-            alt="Graphicatorsign Project 7"
-            loading="lazy"
-          >
-        </div>
-
-        <div class="gallery-item" data-index="7">
-          <img
-            src="kuya jeric/photo8.jpg"
-            alt="Graphicatorsign Project 8"
-            loading="lazy"
-          >
-        </div>
-
-        <div class="gallery-item" data-index="8">
-          <img
-            src="kuya jeric/photo9.jpg"
-            alt="Graphicatorsign Project 9"
-            loading="lazy"
-          >
-        </div>
-
-        <div class="gallery-item" data-index="9">
-          <img
-            src="kuya jeric/photo10.jpg"
-            alt="Graphicatorsign Project 10"
-            loading="lazy"
-          >
-        </div>
-
-        <div class="gallery-item" data-index="10">
-          <img
-            src="kuya jeric/photo11.jpg"
-            alt="Graphicatorsign Project 11"
-            loading="lazy"
-          >
-        </div>
-
-        <div class="gallery-item" data-index="11">
-          <img
-            src="kuya jeric/photo12.jpg"
-            alt="Graphicatorsign Project 12"
-            loading="lazy"
-          >
-        </div>
-
-        <div class="gallery-item" data-index="12">
-          <img
-            src="kuya jeric/photo13.jpg"
-            alt="Graphicatorsign Project 13"
-            loading="lazy"
-          >
-        </div>
-
-        <div class="gallery-item" data-index="13">
-          <img
-            src="kuya jeric/photo14.jpg"
-            alt="Graphicatorsign Project 14"
-            loading="lazy"
-          >
-        </div>
-
-        <div class="gallery-item" data-index="14">
-          <img
-            src="kuya jeric/photo15.jpg"
-            alt="Graphicatorsign Project 15"
-            loading="lazy"
-          >
-        </div>
-
-        <div class="gallery-item" data-index="15">
-          <img
-            src="kuya jeric/photo16.jpg"
-            alt="Graphicatorsign Project 16"
-            loading="lazy"
-          >
-        </div>
-
-      </div>
+      <h2>
+        RECENT PROJECTS
+      </h2>
 
     </div>
 
-  </section>
+    <p class="gallery-description">
+      Take a look at some of the printing and creative
+      projects completed by Graphicatorsign.
+    </p>
 
+  </div>
+
+
+  <div class="gallery-grid">
+
+    <div class="gallery-item" data-index="0">
+      <img src="kuya%20jeric/photo1.jpg" alt="Graphicatorsign Project 1" loading="lazy">
+    </div>
+
+    <div class="gallery-item" data-index="1">
+      <img src="kuya%20jeric/photo2.jpg" alt="Graphicatorsign Project 2" loading="lazy">
+    </div>
+
+    <div class="gallery-item" data-index="2">
+      <img src="kuya%20jeric/photo3.jpg" alt="Graphicatorsign Project 3" loading="lazy">
+    </div>
+
+    <div class="gallery-item" data-index="3">
+      <img src="kuya%20jeric/photo4.jpg" alt="Graphicatorsign Project 4" loading="lazy">
+    </div>
+
+    <div class="gallery-item" data-index="4">
+      <img src="kuya%20jeric/photo5.jpg" alt="Graphicatorsign Project 5" loading="lazy">
+    </div>
+
+    <div class="gallery-item" data-index="5">
+      <img src="kuya%20jeric/photo6.jpg" alt="Graphicatorsign Project 6" loading="lazy">
+    </div>
+
+    <div class="gallery-item" data-index="6">
+      <img src="kuya%20jeric/photo7.jpg" alt="Graphicatorsign Project 7" loading="lazy">
+    </div>
+
+    <div class="gallery-item" data-index="7">
+      <img src="kuya%20jeric/photo8.jpg" alt="Graphicatorsign Project 8" loading="lazy">
+    </div>
+
+    <div class="gallery-item" data-index="8">
+      <img src="kuya%20jeric/photo9.jpg" alt="Graphicatorsign Project 9" loading="lazy">
+    </div>
+
+    <div class="gallery-item" data-index="9">
+      <img src="kuya%20jeric/photo10.jpg" alt="Graphicatorsign Project 10" loading="lazy">
+    </div>
+
+    <div class="gallery-item" data-index="10">
+      <img src="kuya%20jeric/photo11.jpg" alt="Graphicatorsign Project 11" loading="lazy">
+    </div>
+
+    <div class="gallery-item" data-index="11">
+      <img src="kuya%20jeric/photo12.jpg" alt="Graphicatorsign Project 12" loading="lazy">
+    </div>
+
+    <div class="gallery-item" data-index="12">
+      <img src="kuya%20jeric/photo13.jpg" alt="Graphicatorsign Project 13" loading="lazy">
+    </div>
+
+    <div class="gallery-item" data-index="13">
+      <img src="kuya%20jeric/photo14.jpg" alt="Graphicatorsign Project 14" loading="lazy">
+    </div>
+
+    <div class="gallery-item" data-index="14">
+      <img src="kuya%20jeric/photo15.jpg" alt="Graphicatorsign Project 15" loading="lazy">
+    </div>
+
+    <div class="gallery-item" data-index="15">
+      <img src="kuya%20jeric/photo16.jpg" alt="Graphicatorsign Project 16" loading="lazy">
+    </div>
+
+  </div>
+
+</div>
+```
+
+  </section>
 
   <!-- ================= SERVICES ================= -->
 
@@ -1242,289 +1527,212 @@
     id="services"
   >
 
-    <div class="container">
+```
+<div class="container">
 
-      <div class="section-head">
+  <div class="section-head reveal">
 
-        <div>
+    <div>
 
-          <div class="section-label">
-            What We Do
-          </div>
-
-          <h2>
-            OUR SERVICES
-          </h2>
-
-        </div>
-
-        <p class="section-description">
-          From everyday printing to custom business materials,
-          we help turn your ideas into professional printed outputs.
-        </p>
-
+      <div class="section-label">
+        What We Do
       </div>
 
-
-      <div class="service-grid">
-
-        <div class="service">
-
-          <div class="service-number">
-            01 / 04
-          </div>
-
-          <div class="service-icon">
-            ▣
-          </div>
-
-          <h3>
-            Printing Services
-          </h3>
-
-          <p>
-            Professional printing for documents, marketing
-            materials, and personal projects.
-          </p>
-
-        </div>
-
-
-        <div class="service">
-
-          <div class="service-number">
-            02 / 04
-          </div>
-
-          <div class="service-icon">
-            ▤
-          </div>
-
-          <h3>
-            Signage & Sign Boards
-          </h3>
-
-          <p>
-            Custom signs designed to make your business
-            visible and memorable.
-          </p>
-
-        </div>
-
-
-        <div class="service">
-
-          <div class="service-number">
-            03 / 04
-          </div>
-
-          <div class="service-icon">
-            ✦
-          </div>
-
-          <h3>
-            Custom Design
-          </h3>
-
-          <p>
-            Creative printing solutions tailored to your
-            design, size, and project requirements.
-          </p>
-
-        </div>
-
-
-        <div class="service">
-
-          <div class="service-number">
-            04 / 04
-          </div>
-
-          <div class="service-icon">
-            ↗
-          </div>
-
-          <h3>
-            Promotional Materials
-          </h3>
-
-          <p>
-            Printed materials that help businesses promote
-            their brand, products, and services.
-          </p>
-
-        </div>
-
-      </div>
+      <h2>
+        OUR SERVICES
+      </h2>
 
     </div>
 
-  </section>
+    <p class="section-description">
+      From everyday printing to custom business materials,
+      we help turn your ideas into professional printed outputs.
+    </p>
 
+  </div>
+
+
+  <div class="service-grid">
+
+    <div class="service reveal">
+      <div class="service-number">01 / 04</div>
+      <div class="service-icon">▣</div>
+      <h3>Printing Services</h3>
+      <p>
+        Professional printing for documents, marketing
+        materials, and personal projects.
+      </p>
+    </div>
+
+
+    <div class="service reveal">
+      <div class="service-number">02 / 04</div>
+      <div class="service-icon">▤</div>
+      <h3>Signage & Sign Boards</h3>
+      <p>
+        Custom signs designed to make your business
+        visible and memorable.
+      </p>
+    </div>
+
+
+    <div class="service reveal">
+      <div class="service-number">03 / 04</div>
+      <div class="service-icon">✦</div>
+      <h3>Custom Design</h3>
+      <p>
+        Creative printing solutions tailored to your
+        design, size, and project requirements.
+      </p>
+    </div>
+
+
+    <div class="service reveal">
+      <div class="service-number">04 / 04</div>
+      <div class="service-icon">↗</div>
+      <h3>Promotional Materials</h3>
+      <p>
+        Printed materials that help businesses promote
+        their brand, products, and services.
+      </p>
+    </div>
+
+  </div>
+
+</div>
+```
+
+  </section>
 
   <!-- ================= WHY CHOOSE US ================= -->
 
   <section class="why">
 
-    <div class="container">
+```
+<div class="container">
 
-      <div class="why-grid">
+  <div class="why-grid">
 
-        <div
-          class="why-image"
-          role="img"
-          aria-label="Graphicatorsign printing project"
-        ></div>
+    <div
+      class="why-image reveal-left"
+      role="img"
+      aria-label="Graphicatorsign printing project"
+    ></div>
 
 
-        <div>
+    <div class="reveal-right">
 
-          <div class="section-label">
-            Why Graphicatorsign
+      <div class="section-label">
+        Why Graphicatorsign
+      </div>
+
+      <h2>
+        PRINTING THAT<br>
+        WORKS FOR YOU.
+      </h2>
+
+      <p class="intro-text">
+        We believe good printing isn't just about putting
+        ink on paper. It's about helping your brand,
+        message, or idea get noticed.
+      </p>
+
+
+      <div class="benefits">
+
+        <div class="benefit">
+          <div class="check">✓</div>
+
+          <div>
+            <h3>Quality Output</h3>
+            <p>
+              Clean and professional-looking prints for every project.
+            </p>
           </div>
-
-          <h2>
-            PRINTING THAT<br>
-            WORKS FOR YOU.
-          </h2>
-
-          <p class="intro-text">
-            We believe good printing isn't just about putting
-            ink on paper. It's about helping your brand,
-            message, or idea get noticed.
-          </p>
+        </div>
 
 
-          <div class="benefits">
+        <div class="benefit">
+          <div class="check">✓</div>
 
-            <div class="benefit">
-
-              <div class="check">
-                ✓
-              </div>
-
-              <div>
-
-                <h3>
-                  Quality Output
-                </h3>
-
-                <p>
-                  Clean and professional-looking prints for every project.
-                </p>
-
-              </div>
-
-            </div>
-
-
-            <div class="benefit">
-
-              <div class="check">
-                ✓
-              </div>
-
-              <div>
-
-                <h3>
-                  Custom Solutions
-                </h3>
-
-                <p>
-                  Different sizes, designs, and printing requirements are welcome.
-                </p>
-
-              </div>
-
-            </div>
-
-
-            <div class="benefit">
-
-              <div class="check">
-                ✓
-              </div>
-
-              <div>
-
-                <h3>
-                  Affordable Options
-                </h3>
-
-                <p>
-                  Practical printing solutions for different budgets.
-                </p>
-
-              </div>
-
-            </div>
-
-
-            <div class="benefit">
-
-              <div class="check">
-                ✓
-              </div>
-
-              <div>
-
-                <h3>
-                  Easy to Work With
-                </h3>
-
-                <p>
-                  Simply send your design or tell us what you need.
-                </p>
-
-              </div>
-
-            </div>
-
+          <div>
+            <h3>Custom Solutions</h3>
+            <p>
+              Different sizes, designs, and printing requirements are welcome.
+            </p>
           </div>
+        </div>
 
+
+        <div class="benefit">
+          <div class="check">✓</div>
+
+          <div>
+            <h3>Affordable Options</h3>
+            <p>
+              Practical printing solutions for different budgets.
+            </p>
+          </div>
+        </div>
+
+
+        <div class="benefit">
+          <div class="check">✓</div>
+
+          <div>
+            <h3>Easy to Work With</h3>
+            <p>
+              Simply send your design or tell us what you need.
+            </p>
+          </div>
         </div>
 
       </div>
 
     </div>
 
-  </section>
+  </div>
 
+</div>
+```
+
+  </section>
 
   <!-- ================= CTA ================= -->
 
   <section class="cta">
 
-    <div class="container">
+```
+<div class="container reveal">
 
-      <div
-        class="section-label"
-        style="color:#ffd43b;"
-      >
-        Let's Create Something
-      </div>
+  <div
+    class="section-label"
+    style="color:#ffd43b;"
+  >
+    Let's Create Something
+  </div>
 
-      <h2>
-        HAVE A PROJECT<br>
-        IN MIND?
-      </h2>
+  <h2>
+    HAVE A PROJECT<br>
+    IN MIND?
+  </h2>
 
-      <p>
-        Tell us what you need and let's find the right
-        printing solution for your project.
-      </p>
+  <p>
+    Tell us what you need and let's find the right
+    printing solution for your project.
+  </p>
 
-      <a
-        href="tel:09354551563"
-        class="btn btn-primary"
-      >
-        CALL US NOW →
-      </a>
+  <a
+    href="tel:09354551563"
+    class="btn btn-primary"
+  >
+    CALL US NOW →
+  </a>
 
-    </div>
+</div>
+```
 
   </section>
-
 
   <!-- ================= CONTACT ================= -->
 
@@ -1533,159 +1741,139 @@
     id="contact"
   >
 
-    <div class="container">
+```
+<div class="container">
 
-      <div class="contact-content">
+  <div class="contact-content">
 
-        <div class="section-label">
-          Get In Touch
-        </div>
+    <div class="section-label reveal">
+      Get In Touch
+    </div>
 
-        <h2>
-          LET'S TALK ABOUT<br>
-          YOUR PROJECT.
-        </h2>
+    <h2 class="reveal">
+      LET'S TALK ABOUT<br>
+      YOUR PROJECT.
+    </h2>
 
-        <p class="contact-description">
-          Ready to print? Contact Graphicatorsign Printing
-          Services for inquiries, quotations, and orders.
-        </p>
-
-
-        <div class="contact-info">
-
-          <!-- PHONE -->
-
-          <a
-            href="tel:09354551563"
-            class="contact-item"
-          >
-
-            <div class="contact-icon">
-              ☎
-            </div>
-
-            <small>
-              Phone
-            </small>
-
-            <strong>
-              0935 455 1563
-            </strong>
-
-          </a>
+    <p class="contact-description reveal">
+      Ready to print? Contact Graphicatorsign Printing
+      Services for inquiries, quotations, and orders.
+    </p>
 
 
-          <!-- GMAIL -->
+    <div class="contact-info">
 
-          <a
-            href="https://mail.google.com/mail/?view=cm&fs=1&to=bulagajeric@gmail.com&su=Printing%20Service%20Inquiry&body=Hello%20Graphicatorsign%2C%0A%0AI%20would%20like%20to%20inquire%20about%20your%20printing%20services."
-            target="_blank"
-            rel="noopener noreferrer"
-            class="contact-item"
-          >
+      <a
+        href="tel:09354551563"
+        class="contact-item reveal"
+      >
+        <div class="contact-icon">☎</div>
 
-            <div class="contact-icon">
-              ✉
-            </div>
+        <small>Phone</small>
 
-            <small>
-              Email
-            </small>
-
-            <strong>
-              bulagajeric@gmail.com
-            </strong>
-
-          </a>
+        <strong>
+          0935 455 1563
+        </strong>
+      </a>
 
 
-          <!-- CONTACT PERSON -->
+      <a
+        href="https://mail.google.com/mail/?view=cm&fs=1&to=bulagajeric@gmail.com&su=Printing%20Service%20Inquiry&body=Hello%20Graphicatorsign%2C%0A%0AI%20would%20like%20to%20inquire%20about%20your%20printing%20services."
+        target="_blank"
+        rel="noopener noreferrer"
+        class="contact-item reveal"
+      >
+        <div class="contact-icon">✉</div>
 
-          <div class="contact-item">
+        <small>Email</small>
 
-            <div class="contact-icon">
-              ●
-            </div>
-
-            <small>
-              Contact Person
-            </small>
-
-            <strong>
-              Jeric Bulaga
-            </strong>
-
-          </div>
-
-        </div>
+        <strong>
+          bulagajeric@gmail.com
+        </strong>
+      </a>
 
 
-        <div
-          class="buttons"
-          style="justify-content:center;"
-        >
+      <div class="contact-item reveal">
 
-          <a
-            href="tel:09354551563"
-            class="btn btn-primary"
-          >
-            📞 CALL NOW
-          </a>
+        <div class="contact-icon">●</div>
 
+        <small>Contact Person</small>
 
-          <a
-            href="https://mail.google.com/mail/?view=cm&fs=1&to=bulagajeric@gmail.com&su=Printing%20Service%20Inquiry&body=Hello%20Graphicatorsign%2C%0A%0AI%20would%20like%20to%20inquire%20about%20your%20printing%20services."
-            target="_blank"
-            rel="noopener noreferrer"
-            class="btn"
-            style="background:#111;color:white;"
-          >
-            ✉ SEND EMAIL
-          </a>
-
-        </div>
+        <strong>
+          Jeric Bulaga
+        </strong>
 
       </div>
 
     </div>
 
-  </section>
 
+    <div
+      class="buttons reveal"
+      style="justify-content:center;"
+    >
+
+      <a
+        href="tel:09354551563"
+        class="btn btn-primary"
+      >
+        📞 CALL NOW
+      </a>
+
+
+      <a
+        href="https://mail.google.com/mail/?view=cm&fs=1&to=bulagajeric@gmail.com&su=Printing%20Service%20Inquiry&body=Hello%20Graphicatorsign%2C%0A%0AI%20would%20like%20to%20inquire%20about%20your%20printing%20services."
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn"
+        style="background:#111;color:white;"
+      >
+        ✉ SEND EMAIL
+      </a>
+
+    </div>
+
+  </div>
+
+</div>
+```
+
+  </section>
 
   <!-- ================= FOOTER ================= -->
 
   <footer>
 
-    <div class="container footer-inner">
+```
+<div class="container footer-inner">
 
-      <div>
-        © 2026
-        <strong>
-          Graphicatorsign Printing Services
-        </strong>.
-        All rights reserved.
-      </div>
+  <div>
+    © 2026
+    <strong>
+      Graphicatorsign Printing Services
+    </strong>.
+    All rights reserved.
+  </div>
 
 
-      <div class="designer">
+  <div class="designer">
 
-        Website by
+    Website by
 
-        <a
-          href="https://websitedesigns.art"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          WebsiteDesigns.art
-        </a>
+    <a
+      href="https://websitedesigns.art"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      WebsiteDesigns.art
+    </a>
 
-      </div>
+  </div>
 
-    </div>
+</div>
+```
 
   </footer>
-
 
   <!-- ================= LIGHTBOX ================= -->
 
@@ -1695,77 +1883,86 @@
     aria-hidden="true"
   >
 
-    <button
-      class="lightbox-close"
-      id="lightboxClose"
-      aria-label="Close image viewer"
-      type="button"
-    >
-      ×
-    </button>
+```
+<button
+  class="lightbox-close"
+  id="lightboxClose"
+  aria-label="Close image viewer"
+  type="button"
+>
+  ×
+</button>
 
 
-    <button
-      class="lightbox-arrow lightbox-prev"
-      id="lightboxPrev"
-      aria-label="Previous image"
-      type="button"
-    >
-      ‹
-    </button>
+<button
+  class="lightbox-arrow lightbox-prev"
+  id="lightboxPrev"
+  aria-label="Previous image"
+  type="button"
+>
+  ‹
+</button>
 
 
-    <img
-      class="lightbox-image"
-      id="lightboxImage"
-      src=""
-      alt="Graphicatorsign Project"
-    />
+<img
+  class="lightbox-image"
+  id="lightboxImage"
+  src=""
+  alt="Graphicatorsign Project"
+/>
 
 
-    <button
-      class="lightbox-arrow lightbox-next"
-      id="lightboxNext"
-      aria-label="Next image"
-      type="button"
-    >
-      ›
-    </button>
+<button
+  class="lightbox-arrow lightbox-next"
+  id="lightboxNext"
+  aria-label="Next image"
+  type="button"
+>
+  ›
+</button>
 
 
-    <div
-      class="lightbox-counter"
-      id="lightboxCounter"
-    >
-      1 / 16
-    </div>
+<div
+  class="lightbox-counter"
+  id="lightboxCounter"
+>
+  1 / 16
+</div>
+```
 
   </div>
-
 
   <!-- ================= JAVASCRIPT ================= -->
 
   <script>
 
+    /* =========================
+       GALLERY IMAGES
+    ========================= */
+
     const galleryImages = [
-      "kuya jeric/photo1.jpg",
-      "kuya jeric/photo2.jpg",
-      "kuya jeric/photo3.jpg",
-      "kuya jeric/photo4.jpg",
-      "kuya jeric/photo5.jpg",
-      "kuya jeric/photo6.jpg",
-      "kuya jeric/photo7.jpg",
-      "kuya jeric/photo8.jpg",
-      "kuya jeric/photo9.jpg",
-      "kuya jeric/photo10.jpg",
-      "kuya jeric/photo11.jpg",
-      "kuya jeric/photo12.jpg",
-      "kuya jeric/photo13.jpg",
-      "kuya jeric/photo14.jpg",
-      "kuya jeric/photo15.jpg",
-      "kuya jeric/photo16.jpg"
+      "kuya%20jeric/photo1.jpg",
+      "kuya%20jeric/photo2.jpg",
+      "kuya%20jeric/photo3.jpg",
+      "kuya%20jeric/photo4.jpg",
+      "kuya%20jeric/photo5.jpg",
+      "kuya%20jeric/photo6.jpg",
+      "kuya%20jeric/photo7.jpg",
+      "kuya%20jeric/photo8.jpg",
+      "kuya%20jeric/photo9.jpg",
+      "kuya%20jeric/photo10.jpg",
+      "kuya%20jeric/photo11.jpg",
+      "kuya%20jeric/photo12.jpg",
+      "kuya%20jeric/photo13.jpg",
+      "kuya%20jeric/photo14.jpg",
+      "kuya%20jeric/photo15.jpg",
+      "kuya%20jeric/photo16.jpg"
     ];
 
+
+    /* =========================
+       LIGHTBOX ELEMENTS
+    ========================= */
 
     const lightbox =
       document.getElementById("lightbox");
@@ -1789,7 +1986,9 @@
     let currentImage = 0;
 
 
-    /* ================= OPEN ================= */
+    /* =========================
+       OPEN LIGHTBOX
+    ========================= */
 
     function openLightbox(index) {
 
@@ -1807,10 +2006,13 @@
       document.body.classList.add(
         "lightbox-open"
       );
+
     }
 
 
-    /* ================= CLOSE ================= */
+    /* =========================
+       CLOSE LIGHTBOX
+    ========================= */
 
     function closeLightbox() {
 
@@ -1826,12 +2028,22 @@
       );
 
       lightboxImage.src = "";
+
     }
 
 
-    /* ================= UPDATE IMAGE ================= */
+    /* =========================
+       UPDATE LIGHTBOX
+    ========================= */
 
     function updateLightbox() {
+
+      lightboxImage.style.animation = "none";
+
+      void lightboxImage.offsetWidth;
+
+      lightboxImage.style.animation =
+        "lightboxZoom .3s ease both";
 
       lightboxImage.src =
         galleryImages[currentImage];
@@ -1848,7 +2060,9 @@
     }
 
 
-    /* ================= PREVIOUS ================= */
+    /* =========================
+       PREVIOUS
+    ========================= */
 
     function showPrevious() {
 
@@ -1864,7 +2078,9 @@
     }
 
 
-    /* ================= NEXT ================= */
+    /* =========================
+       NEXT
+    ========================= */
 
     function showNext() {
 
@@ -1882,7 +2098,9 @@
     }
 
 
-    /* ================= GALLERY CLICK ================= */
+    /* =========================
+       GALLERY CLICK
+    ========================= */
 
     document
       .querySelectorAll(".gallery-item")
@@ -1905,7 +2123,9 @@
       });
 
 
-    /* ================= CLOSE BUTTON ================= */
+    /* =========================
+       CLOSE BUTTON
+    ========================= */
 
     lightboxClose.addEventListener(
       "click",
@@ -1913,7 +2133,9 @@
     );
 
 
-    /* ================= PREVIOUS BUTTON ================= */
+    /* =========================
+       PREVIOUS BUTTON
+    ========================= */
 
     lightboxPrev.addEventListener(
       "click",
@@ -1927,7 +2149,9 @@
     );
 
 
-    /* ================= NEXT BUTTON ================= */
+    /* =========================
+       NEXT BUTTON
+    ========================= */
 
     lightboxNext.addEventListener(
       "click",
@@ -1941,7 +2165,9 @@
     );
 
 
-    /* ================= CLICK BACKGROUND ================= */
+    /* =========================
+       BACKGROUND CLICK
+    ========================= */
 
     lightbox.addEventListener(
       "click",
@@ -1957,7 +2183,9 @@
     );
 
 
-    /* ================= KEYBOARD ================= */
+    /* =========================
+       KEYBOARD
+    ========================= */
 
     document.addEventListener(
       "keydown",
@@ -1971,20 +2199,17 @@
           return;
         }
 
-
         if (
           event.key === "Escape"
         ) {
           closeLightbox();
         }
 
-
         if (
           event.key === "ArrowLeft"
         ) {
           showPrevious();
         }
-
 
         if (
           event.key === "ArrowRight"
@@ -1996,11 +2221,12 @@
     );
 
 
-    /* ================= TOUCH / SWIPE ================= */
+    /* =========================
+       TOUCH / SWIPE
+    ========================= */
 
     let touchStartX = 0;
     let touchEndX = 0;
-
 
     lightbox.addEventListener(
       "touchstart",
@@ -2024,13 +2250,11 @@
         const difference =
           touchStartX - touchEndX;
 
-
         if (
           Math.abs(difference) < 50
         ) {
           return;
         }
-
 
         if (difference > 0) {
           showNext();
@@ -2042,8 +2266,157 @@
       { passive: true }
     );
 
+
+    /* =========================
+       SCROLL REVEAL
+    ========================= */
+
+    const revealElements =
+      document.querySelectorAll(
+        ".reveal, .reveal-left, .reveal-right"
+      );
+
+
+    const revealObserver =
+      new IntersectionObserver(
+        (entries, observer) => {
+
+          entries.forEach(
+            (entry) => {
+
+              if (
+                entry.isIntersecting
+              ) {
+
+                entry.target.classList.add(
+                  "active"
+                );
+
+                observer.unobserve(
+                  entry.target
+                );
+
+              }
+
+            }
+          );
+
+        },
+        {
+          threshold: .12,
+          rootMargin: "0px 0px -50px 0px"
+        }
+      );
+
+
+    revealElements.forEach(
+      (element) => {
+
+        revealObserver.observe(
+          element
+        );
+
+      }
+    );
+
+
+    /* =========================
+       GALLERY STAGGER ANIMATION
+    ========================= */
+
+    const galleryItems =
+      document.querySelectorAll(
+        ".gallery-item"
+      );
+
+
+    const galleryObserver =
+      new IntersectionObserver(
+        (entries, observer) => {
+
+          entries.forEach(
+            (entry) => {
+
+              if (
+                entry.isIntersecting
+              ) {
+
+                galleryItems.forEach(
+                  (item, index) => {
+
+                    setTimeout(
+                      () => {
+                        item.classList.add(
+                          "active"
+                        );
+                      },
+                      index * 55
+                    );
+
+                  }
+                );
+
+                observer.disconnect();
+
+              }
+
+            }
+          );
+
+        },
+        {
+          threshold: .08
+        }
+      );
+
+
+    const galleryGrid =
+      document.querySelector(
+        ".gallery-grid"
+      );
+
+
+    if (galleryGrid) {
+      galleryObserver.observe(
+        galleryGrid
+      );
+    }
+
+
+    /* =========================
+       SCROLL PROGRESS
+    ========================= */
+
+    const scrollProgress =
+      document.getElementById(
+        "scrollProgress"
+      );
+
+
+    window.addEventListener(
+      "scroll",
+      () => {
+
+        const scrollTop =
+          window.scrollY;
+
+        const documentHeight =
+          document.documentElement.scrollHeight -
+          window.innerHeight;
+
+        const progress =
+          documentHeight > 0
+            ? (scrollTop / documentHeight) * 100
+            : 0;
+
+        scrollProgress.style.width =
+          progress + "%";
+
+      },
+      { passive: true }
+    );
+
   </script>
 
 </body>
 </html>
-
